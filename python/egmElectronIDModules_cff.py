@@ -39,15 +39,15 @@ def setIDs(process, options):
       process.electronRegressionValueMapProducer.srcMiniAOD = cms.InputTag(options['ELECTRON_COLL'])
 
     #
-    # One tag module --> cut based tight 94X V2
+    # One tag module --> cut based medium 94X V2 : 
     # The same cut still recommended by the POG for UL compaign 
 
-    process.tagEleCutBasedTight = cms.EDProducer('GsfElectronSelectorByValueMap' if options['useAOD'] else 'PatElectronSelectorByValueMap',
-                                                     input     = cms.InputTag("goodElectrons"),
-                                                     cut       = cms.string(options['ELECTRON_TAG_CUTS']),
-                                                     selection = cms.InputTag("egmGsfElectronIDs:cutBasedElectronID-Fall17-94X-V2-tight"),
-                                                     id_cut    = cms.bool(True)
-                                                )
+    #process.tagEleCutBasedTight = cms.EDProducer('GsfElectronSelectorByValueMap' if options['useAOD'] else 'PatElectronSelectorByValueMap',
+    #                                                 input     = cms.InputTag("goodElectrons"),
+    #                                                 cut       = cms.string(options['ELECTRON_TAG_CUTS']),
+    #                                                 selection = cms.InputTag("egmGsfElectronIDs:cutBasedElectronID-Fall17-94X-V2-tight"),
+    #                                                 id_cut    = cms.bool(True)
+    #                                            )
     process.tagEleCutBasedMedium = cms.EDProducer('GsfElectronSelectorByValueMap' if options['useAOD'] else 'PatElectronSelectorByValueMap',
                                                      input     = cms.InputTag("goodElectrons"),
                                                      cut       = cms.string(options['ELECTRON_TAG_CUTS']),
