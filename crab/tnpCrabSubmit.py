@@ -4,7 +4,7 @@ import os
 #
 # Example script to submit TnPTreeProducer to crab
 #
-submitVersion = "2021-07-18__ext2" # add some date here
+submitVersion = "2021-07-20__ext2" # add some date here
 doL1matching  = False
 
 defaultArgs   = ['doEleID=False','doPhoID=False','doTrigger=True']
@@ -109,48 +109,48 @@ def submitWrapper(requestName, sample, era, extraParam=[]):
 #
 from EgammaAnalysis.TnPTreeProducer.cmssw_version import isReleaseAbove
 if isReleaseAbove(10,6): # Do Ulegacy 
-  era       = 'UL2017'
-  submitWrapper('RunUL2017B', '/SingleElectron/Run2017B-UL2017_MiniAODv2-v1/MINIAOD', era)
-  submitWrapper('RunUL2017C', '/SingleElectron/Run2017C-UL2017_MiniAODv2-v1/MINIAOD', era)
-  submitWrapper('RunUL2017D', '/SingleElectron/Run2017D-UL2017_MiniAODv2-v1/MINIAOD', era)
-  submitWrapper('RunUL2017E', '/SingleElectron/Run2017E-UL2017_MiniAODv2-v1/MINIAOD', era)
-  submitWrapper('RunUL2017F', '/SingleElectron/Run2017F-UL2017_MiniAODv2-v1/MINIAOD', era)
-
-  submitWrapper('DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8', '/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL17MiniAODv2-Pilot_106X_mc2017_realistic_v9-v1/MINIAODSIM', era)
-  submitWrapper('DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8', '/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL17MiniAODv2-106X_mc2017_realistic_v9-v2/MINIAODSIM', era)
-  submitWrapper('DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_ext1', '/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL17MiniAODv2-106X_mc2017_realistic_v9_ext1-v1/MINIAODSIM', era)
-
-  
-  era       = 'UL2018'
-  submitWrapper('RunUL2018A', '/EGamma/Run2018A-UL2018_MiniAODv2-v1/MINIAOD', era)
-  submitWrapper('RunUL2018B', '/EGamma/Run2018B-UL2018_MiniAODv2-v1/MINIAOD', era)
-  submitWrapper('RunUL2018C', '/EGamma/Run2018C-UL2018_MiniAODv2-v1/MINIAOD', era)
-  submitWrapper('RunUL2018D', '/EGamma/Run2018D-UL2018_MiniAODv2-v1/MINIAOD', era)
-
-  submitWrapper('DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8',   '/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL18MiniAODv2-Pilot_106X_upgrade2018_realistic_v16_L1v1-v1/MINIAODSIM', era)
-  submitWrapper('DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8',    '/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2/MINIAODSIM', era)
-  submitWrapper('DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8__ext1','/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1_ext1-v1/MINIAODSIM', era)
-  
-  
-  era       = 'UL2016-preVFP'
-  submitWrapper('RunUL2016B-preVFP__v1', '/SingleElectron/Run2016B-ver1_HIPM_UL2016_MiniAODv2-v2/MINIAOD', era)
-  submitWrapper('RunUL2016B-preVFP__v2', '/SingleElectron/Run2016B-ver2_HIPM_UL2016_MiniAODv2-v2/MINIAOD', era)
-  submitWrapper('RunUL2016C-preVFP', '/SingleElectron/Run2016C-21Feb2020_UL2016_HIPM-v1/MINIAOD', era)
-  submitWrapper('RunUL2016D-preVFP', '/SingleElectron/Run2016D-21Feb2020_UL2016_HIPM-v1/MINIAOD', era)
-  submitWrapper('RunUL2016E-preVFP', '/SingleElectron/Run2016E-21Feb2020_UL2016_HIPM-v1/MINIAOD', era)
-  submitWrapper('RunUL2016F-preVFP', '/SingleElectron/Run2016F-21Feb2020_UL2016_HIPM-v1/MINIAOD', era)
-  
-  submitWrapper('DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8__pre-VFP', '/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL16MiniAODAPVv2-Pilot_106X_mcRun2_asymptotic_preVFP_v11-v1/MINIAODSIM', era)
-  submitWrapper('DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8i__post-VFP', '/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL16MiniAODv2-FlatPU0to75_106X_mcRun2_asymptotic_v17-v1/MINIAODSIM', era)
-  
-  
-  era       = 'UL2016-postVFP'
+#  era       = 'UL2017'
+#  submitWrapper('RunUL2017B', '/SingleElectron/Run2017B-UL2017_MiniAODv2-v1/MINIAOD', era)
+#  submitWrapper('RunUL2017C', '/SingleElectron/Run2017C-UL2017_MiniAODv2-v1/MINIAOD', era)
+#  submitWrapper('RunUL2017D', '/SingleElectron/Run2017D-UL2017_MiniAODv2-v1/MINIAOD', era)
+#  submitWrapper('RunUL2017E', '/SingleElectron/Run2017E-UL2017_MiniAODv2-v1/MINIAOD', era)
+#  submitWrapper('RunUL2017F', '/SingleElectron/Run2017F-UL2017_MiniAODv2-v1/MINIAOD', era)
+#
+#  submitWrapper('DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8', '/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL17MiniAODv2-Pilot_106X_mc2017_realistic_v9-v1/MINIAODSIM', era)
+#  submitWrapper('DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8', '/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL17MiniAODv2-106X_mc2017_realistic_v9-v2/MINIAODSIM', era)
+#  submitWrapper('DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_ext1', '/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL17MiniAODv2-106X_mc2017_realistic_v9_ext1-v1/MINIAODSIM', era)
+#
+#  
+#  era       = 'UL2018'
+#  submitWrapper('RunUL2018A', '/EGamma/Run2018A-UL2018_MiniAODv2-v1/MINIAOD', era)
+#  submitWrapper('RunUL2018B', '/EGamma/Run2018B-UL2018_MiniAODv2-v1/MINIAOD', era)
+#  submitWrapper('RunUL2018C', '/EGamma/Run2018C-UL2018_MiniAODv2-v1/MINIAOD', era)
+#  submitWrapper('RunUL2018D', '/EGamma/Run2018D-UL2018_MiniAODv2-v1/MINIAOD', era)
+#
+#  submitWrapper('DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8',   '/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL18MiniAODv2-Pilot_106X_upgrade2018_realistic_v16_L1v1-v1/MINIAODSIM', era)
+#  submitWrapper('DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8',    '/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1-v2/MINIAODSIM', era)
+#  submitWrapper('DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8__ext1','/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL18MiniAODv2-106X_upgrade2018_realistic_v16_L1v1_ext1-v1/MINIAODSIM', era)
+#  
+#  
+#  era       = 'UL2016_preVFP'
+#  submitWrapper('RunUL2016B-preVFP__v1', '/SingleElectron/Run2016B-ver1_HIPM_UL2016_MiniAODv2-v2/MINIAOD', era)
+#  submitWrapper('RunUL2016B-preVFP__v2', '/SingleElectron/Run2016B-ver2_HIPM_UL2016_MiniAODv2-v2/MINIAOD', era)
+#  submitWrapper('RunUL2016C-preVFP', '/SingleElectron/Run2016C-21Feb2020_UL2016_HIPM-v1/MINIAOD', era)
+#  submitWrapper('RunUL2016D-preVFP', '/SingleElectron/Run2016D-21Feb2020_UL2016_HIPM-v1/MINIAOD', era)
+#  submitWrapper('RunUL2016E-preVFP', '/SingleElectron/Run2016E-21Feb2020_UL2016_HIPM-v1/MINIAOD', era)
+#  submitWrapper('RunUL2016F-preVFP', '/SingleElectron/Run2016F-21Feb2020_UL2016_HIPM-v1/MINIAOD', era)
+#  
+#  submitWrapper('DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8__pre-VFP', '/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL16MiniAODAPVv2-Pilot_106X_mcRun2_asymptotic_preVFP_v11-v1/MINIAODSIM', era)
+#  submitWrapper('DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8__pre-VFP', '/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL16MiniAODAPVv2-FlatPU0to75_106X_mcRun2_asymptotic_preVFP_v11-v1/MINIAODSIM', era)
+#  
+#  
+  era       = 'UL2016_postVFP'
   submitWrapper('RunUL2016F-postVFP', '/SingleElectron/Run2016F-UL2016_MiniAODv2-v2/MINIAOD', era)
   submitWrapper('RunUL2016G-postVFP', '/SingleElectron/Run2016G-21Feb2020_UL2016-v1/MINIAOD', era)
   submitWrapper('RunUL2016H-postVFP', '/SingleElectron/Run2016H-UL2016_MiniAODv2-v2/MINIAOD', era)
   
   submitWrapper('DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8__post-VFP', '/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL16MiniAODv2-Pilot_106X_mcRun2_asymptotic_v17-v1/MINIAODSIM', era)
-  submitWrapper('DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8__pre-VFP', '/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL16MiniAODAPVv2-FlatPU0to75_106X_mcRun2_asymptotic_preVFP_v11-v1/MINIAODSIM', era)
+  submitWrapper('DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8i__post-VFP', '/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer20UL16MiniAODv2-FlatPU0to75_106X_mcRun2_asymptotic_v17-v1/MINIAODSIM', era)
 
 else: # Do EOY re-reco 
   era       = '2016'
