@@ -29,7 +29,7 @@ registerOption('includeSUSY', False,    'Add also the variables used by SUSY')
 
 registerOption('HLTname',     'HLT',    'HLT process name (default HLT)', optionType=VarParsing.varType.string) # HLTname was HLT2 in now outdated reHLT samples
 registerOption('GT',          'auto',   'Global Tag to be used', optionType=VarParsing.varType.string)
-registerOption('era',         '2018',   'Data-taking era: 2016, 2017, 2018, UL2016-preVFP, UL2016-postVFP, UL2017 or UL2018', optionType=VarParsing.varType.string)
+registerOption('era',         'UL2017',   'Data-taking era: 2016, 2017, 2018, UL2016_preVFP, UL2016_postVFP, UL2017 or UL2018', optionType=VarParsing.varType.string)
 registerOption('logLevel',    'INFO',   'Loglevel: could be DEBUG, INFO, WARNING, ERROR', optionType=VarParsing.varType.string)
 
 registerOption('L1Threshold',  0,       'Threshold for L1 matched objects', optionType=VarParsing.varType.int)
@@ -47,7 +47,7 @@ if varOptions.isAOD and varOptions.doTrigger:  log.warning('AOD is not supported
 if not varOptions.isAOD and varOptions.doRECO: log.warning('miniAOD is not supported for doRECO, please consider using AOD')
 
 from EgammaAnalysis.TnPTreeProducer.cmssw_version import isReleaseAbove
-if varOptions.era not in ['2016', '2017', '2018', 'UL2017', 'UL2018']: log.error('%s is not a valid era' % varOptions.era)
+if varOptions.era not in ['2016', '2017', '2018', 'UL2016_preVFP', 'UL2016_postVFP', 'UL2017', 'UL2018']: log.error('%s is not a valid era' % varOptions.era)
 if ('UL' in varOptions.era)!=(isReleaseAbove(10, 6)):
   log.error('Inconsistent release for era %s. Use CMSSW_10_6_X for UL and CMSSW_10_2_X for rereco' % varOptions.era)
 
@@ -106,8 +106,8 @@ if varOptions.GT == "auto":
     if options['era'] == '2016':   options['GLOBALTAG'] = '94X_mcRun2_asymptotic_v3'
     if options['era'] == '2017':   options['GLOBALTAG'] = '94X_mc2017_realistic_v17'
     if options['era'] == '2018':   options['GLOBALTAG'] = '102X_upgrade2018_realistic_v21'
-    if options['era'] == 'UL2016-preVFP' : options['GLOBALTAG'] = '106X_mcRun2_asymptotic_preVFP_v11'
-    if options['era'] == 'UL2016-POSTVFP': options['GLOBALTAG'] = '106X_mcRun2_asymptotic_v17'
+    if options['era'] == 'UL2016_preVFP' : options['GLOBALTAG'] = '106X_mcRun2_asymptotic_preVFP_v11'
+    if options['era'] == 'UL2016_postVFP': options['GLOBALTAG'] = '106X_mcRun2_asymptotic_v17'
     if options['era'] == 'UL2017': options['GLOBALTAG'] = '106X_mc2017_realistic_v8'
     if options['era'] == 'UL2018': options['GLOBALTAG'] = '106X_upgrade2018_realistic_v15_L1v1'
     
@@ -115,8 +115,8 @@ if varOptions.GT == "auto":
     if options['era'] == '2016':   options['GLOBALTAG'] = '94X_dataRun2_v10'
     if options['era'] == '2017':   options['GLOBALTAG'] = '94X_dataRun2_v11'
     if options['era'] == '2018':   options['GLOBALTAG'] = '102X_dataRun2_v13'
-    if options['era'] == 'UL2016-preVFP' : options['GLOBALTAG'] = '106X_dataRun2_v32'
-    if options['era'] == 'UL2016-postVFP': options['GLOBALTAG'] = '106X_dataRun2_v32'
+    if options['era'] == 'UL2016_preVFP' : options['GLOBALTAG'] = '106X_dataRun2_v32'
+    if options['era'] == 'UL2016_postVFP': options['GLOBALTAG'] = '106X_dataRun2_v32'
     if options['era'] == 'UL2017': options['GLOBALTAG'] = '106X_dataRun2_v32'
     if options['era'] == 'UL2018': options['GLOBALTAG'] = '106X_dataRun2_v32'
 else:
@@ -124,6 +124,40 @@ else:
 
 #################################################
 # Settings for trigger tag and probe measurement
+# https://github.com/cms-sw/cmssw/blob/CMSSW_10_6_X/DQMOffline/Trigger/python/HLTEGTnPMonitor_cfi.py
+# HLT to measure : ( THEY ARE ADDED HERE IN THE SAME ORDER OF THE options['HLTFILTERSTOMEASURE'] BELOW )
+    # 2016
+        # HLT_Ele27_WPTight_Gsf
+        # HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL
+        # HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL
+        # ? 
+        # HLT_DoubleEle33_CaloIdL_MW
+    # 2017
+        # HLT_Ele32_WPTight_Gsf_L1DoubleEG
+        # ?
+        # HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL
+        # HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL
+        # HLT_DoubleEle33_CaloIdL_MW # seeded with L1 match
+        # HLT_DoubleEle33_CaloIdL_MW # unseeded
+        # HLT_Ele35_WPTight_Gsf
+        # HLT_Ele28_HighEta_SC20_Mass55
+        # HLT_DiEle27_WPTightCaloOnly_L1DoubleEG
+        # HLT_DoubleEle25_CaloIdL_MW
+    # 2018 
+        # HLT_Ele32_WPTight_Gsf
+        # HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL
+        # HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL
+        # HLT_DoubleEle33_CaloIdL_MW # seeded with L1 match
+        # HLT_DoubleEle33_CaloIdL_MW # unseeded
+        # HLT_DiEle27_WPTightCaloOnly_L1DoubleEG
+        # HLT_Ele32_WPTight_Gsf
+        # HLT_Ele35_WPTight_Gsf
+        # HLT_Ele38_WPTight_Gsf
+        # HLT_DoubleEle25_CaloIdL_MW
+        # HLT_Ele50_CaloIdVT_GsfTrkIdT_PFJet165
+        # HLT_Ele115_CaloIdVT_GsfTrkIdT
+
+# '' MW ''  refers to the pixel match window being "medium window" working point
 #################################################
 if '2016' in options['era']:
   options['TnPPATHS']           = cms.vstring("HLT_Ele27_eta2p1_WPTight_Gsf_v*")
@@ -146,7 +180,11 @@ elif '2017' in options['era']:
                                    "passHltEle23Ele12CaloIdLTrackIdLIsoVLLeg2" :        cms.vstring("hltEle23Ele12CaloIdLTrackIdLIsoVLTrackIsoLeg2Filter"),
                                    "passHltDoubleEle33CaloIdLMWSeedLegL1match" :        cms.vstring("hltEle33CaloIdLMWPMS2Filter"),
                                    "passHltDoubleEle33CaloIdLMWUnsLeg" :                cms.vstring("hltDiEle33CaloIdLMWPMS2UnseededFilter"),
-                                  }
+                                   "passHltEle35noerWPTightGsfTrackIso" :               cms.vstring("hltEle35noerWPTightGsfTrackIsoFilter"),
+                                   "passHltEle28HighEtaSC20TrackIso":                   cms.vstring("hltEle28HighEtaSC20TrackIsoFilter"),
+                                   "passHltEle27L1DoubleEGWPTightEcalIso":              cms.vstring("hltEle27L1DoubleEGWPTightEcalIsoFilter"),
+                                   "passHltEle25CaloIdLMWPMS2":                         cms.vstring("hltEle25CaloIdLMWPMS2Filter"),
+                                   }
 
 elif '2018'  in options['era']:
   options['TnPPATHS']           = cms.vstring("HLT_Ele32_WPTight_Gsf_v*")
@@ -157,7 +195,14 @@ elif '2018'  in options['era']:
                                    "passHltEle23Ele12CaloIdLTrackIdLIsoVLLeg2" :        cms.vstring("hltEle23Ele12CaloIdLTrackIdLIsoVLTrackIsoLeg2Filter"),
                                    "passHltDoubleEle33CaloIdLMWSeedLegL1match" :        cms.vstring("hltEle33CaloIdLMWPMS2Filter"),
                                    "passHltDoubleEle33CaloIdLMWUnsLeg" :                cms.vstring("hltDiEle33CaloIdLMWPMS2UnseededFilter"),
-                                  }
+                                   "passHltEle27L1DoubleEGWPTightEcalIso":              cms.vstring("hltEle27L1DoubleEGWPTightEcalIsoFilter"),
+                                   "passHltEle32WPTightGsfTrackIso":                    cms.vstring("hltEle32WPTightGsfTrackIsoFilter"),
+                                   "passHltEle35noerWPTightGsfTrackIso":                cms.vstring("hltEle35noerWPTightGsfTrackIsoFilter"),
+                                   "passHltEle38noerWPTightGsfTrackIso":                cms.vstring("hltEle38noerWPTightGsfTrackIsoFilter"),
+                                   "passHltEle25CaloIdLMWPMS2":                         cms.vstring("hltEle25CaloIdLMWPMS2Filter"),
+                                   "passHltEle50CaloIdVTGsfTrkIdTGsfDphi":              cms.vstring("hltEle50CaloIdVTGsfTrkIdTGsfDphiFilter"),
+                                   "passHltEle115CaloIdVTGsfTrkIdTGsfDphi":             cms.vstring("hltEle115CaloIdVTGsfTrkIdTGsfDphiFilter"),
+                                   }
 
 # Apply L1 matching (using L1Threshold) when flag contains "L1match" in name
 options['ApplyL1Matching']      = any(['L1match' in flag for flag in options['HLTFILTERSTOMEASURE'].keys()])
