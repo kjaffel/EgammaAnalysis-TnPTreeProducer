@@ -83,7 +83,9 @@ def leptonMvaSequence(process, options, tnpVars):
 
     process.leptonMvaTOP = cms.EDProducer('LeptonMvaProducer',
       leptonMvaType        = cms.string("leptonMvaTOP"),
-      weightFile           = cms.FileInPath('EgammaAnalysis/TnPTreeProducer/data/el_TOP%s_BDTG.weights.xml' % (options['era'].replace('20', '').replace('UL', ''))),
+      #weightFile           = cms.FileInPath('EgammaAnalysis/TnPTreeProducer/data/el_TOP%s_BDTG.weights.xml' % (options['era'].replace('20', '').replace('UL', ''))),
+      # 2016 Ulegacy not splitted yest pre/post VFP 
+      weightFile           = cms.FileInPath('EgammaAnalysis/TnPTreeProducer/data/el_TOP%s_BDTG.weights.xml' % (options['era'].replace('20', '').replace('UL', '').replace('_postVFP', '').replace('_preVFP', ''))),
       probes               = cms.InputTag('slimmedElectrons'),
       miniIsoChg           = cms.InputTag('isoForEle%s:miniIsoChg' % ('Spring15' if '2016' in options['era'] else 'Fall17')),
       miniIsoAll           = cms.InputTag('isoForEle%s:miniIsoAll' % ('Spring15' if '2016' in options['era'] else 'Fall17')),
